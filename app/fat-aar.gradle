@@ -157,7 +157,6 @@ private List getMergedInputResourceSets(List inputResourceSet) {
     //We need to do this trickery here since the class declared here and that used by the runtime
     //are different and results in class cast error
     def ResourceSetClass = inputResourceSet.get(0).class
-    app-release.aar
     List newInputResourceSet = new ArrayList(inputResourceSet)
 
     embeddedAarDirs.each { aarPath ->
