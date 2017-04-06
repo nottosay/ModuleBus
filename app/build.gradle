@@ -37,7 +37,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
 
     if(project.ext.isLib) {
-        embedded project(':page_body')
+        compile project(':page_body')
         embedded project(':page_body_bt')
         embedded project(':page_name')
         embedded project(':page_view')

@@ -91,6 +91,7 @@ afterEvaluate {
         def aarPath = "${exploded_aar_dir}/${it.moduleGroup}/${it.moduleName}/${it.moduleVersion}"
         it.moduleArtifacts.each {
             artifact ->
+                println('wally:' + artifact.file)
                 if (artifact.type == 'aar') {
                     if (!embeddedAarDirs.contains(aarPath)) {
                         embeddedAarDirs.add(aarPath)
@@ -156,11 +157,13 @@ private List getMergedInputResourceSets(List inputResourceSet) {
     //We need to do this trickery here since the class declared here and that used by the runtime
     //are different and results in class cast error
     def ResourceSetClass = inputResourceSet.get(0).class
-
+    app-release.aar
     List newInputResourceSet = new ArrayList(inputResourceSet)
 
     embeddedAarDirs.each { aarPath ->
         try {
+            println("aarPath:"+aarPath)
+            println("exploded_aar_dir:"+exploded_aar_dir)
             def resname = (aarPath.split(exploded_aar_dir)[1]).replace('/', ':');
             def rs = ResourceSetClass.newInstance([resname, true] as Object[])
             rs.addSource(file("$aarPath/res"))
