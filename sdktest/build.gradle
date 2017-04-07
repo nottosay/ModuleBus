@@ -39,13 +39,12 @@ dependencies {
     })
     compile 'com.android.support:design:25.0.1'
     compile 'com.android.support:appcompat-v7:25.0.1'
-
-    if(project.ext.isLib) {
-        compile project(':page_body')
+    if (project.ext.isLib) {
+        embedded project(':page_body')
         embedded project(':page_body_bt')
         embedded project(':page_name')
         embedded project(':page_view')
-    }else{
+    } else {
         if (!project.ext.isDebug) {
             compile project(':a')
             compile project(':b')
@@ -53,10 +52,11 @@ dependencies {
             compile project(':page_body_bt')
             compile project(':page_name')
             compile project(':page_view')
-        }else{
+        } else {
             compile project(':core')
         }
     }
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
@@ -65,7 +65,7 @@ apply plugin: 'com.jfrog.bintray'
 def siteUrl = 'https://github.com/nottosay/ModuleBus'    // project homepage
 def gitUrl = 'https://github.com/nottosay/ModuleBus.git' // project git
 
-group = "com.meituan.sankuai.mapsdk"
+group = "com.wally.sdk"
 version = "1.0.0"
 
 install {
